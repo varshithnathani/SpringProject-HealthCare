@@ -3,9 +3,11 @@ package com.example.demo.user;
 import jakarta.persistence.*;
 import lombok.*;
 
-@MappedSuperclass
+@Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
-public abstract class UserBase {
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;

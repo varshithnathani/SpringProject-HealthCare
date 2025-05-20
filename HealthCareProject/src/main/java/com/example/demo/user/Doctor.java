@@ -7,10 +7,9 @@ import lombok.*;
 @Entity
 @Table(name = "doctors")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
-public class Doctor extends UserBase {
+public class Doctor extends User {
     private String specialization;
 
-    // Constructor matching DataLoader arguments
     public Doctor(Long userId, String name, String email, String phone, String password, String specialization) {
         super(userId, name, email, phone, password);
         this.specialization = specialization;
