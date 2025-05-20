@@ -22,7 +22,6 @@ public class AppointmentController {
         return ResponseEntity.ok(appointmentService.bookAppointment(patientId, doctorId, timeSlot));
     }
 
-
     @PutMapping("/cancel/{id}")
     public ResponseEntity<Appointment> cancelAppointment(@PathVariable Long id) {
         return ResponseEntity.ok(appointmentService.cancelAppointment(id));
