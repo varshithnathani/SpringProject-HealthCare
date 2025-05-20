@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.example.demo.user.doctor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,20 @@ public class DoctorController {
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Doctor>> getDoctorById(@PathVariable Long id) {
         return ResponseEntity.ok(doctorRepository.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Doctor> updateDoctor(@PathVariable Long id, @RequestBody Doctor updatedDoctor) {
+        return doctorRepository.findById(id)
+            .map(doctor -> {
+                if (updatedDoctor.getName() != null) doctor.setName(updatedDoctor.getName());
+                if (updatedDoctor.getEmail() != null) doctor.setEmail(updatedDoctor.getEmail());
+                if (updatedDoctor.getPhone() != null) doctor.setPhone(updatedDoctor.getPhone());
+                if (updatedDoctor.getPassword() != null) doctor.setPassword(updatedDoctor.getPassword());
+                if (updatedDoctor.getSpecialization() != null) doctor.setSpecialization(updatedDoctor.getSpecialization());
+                return ResponseEntity.ok(doctorRepository.save(doctor));
+            })
+            .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

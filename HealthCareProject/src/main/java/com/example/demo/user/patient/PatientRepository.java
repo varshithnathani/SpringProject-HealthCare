@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.example.demo.user.patient;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

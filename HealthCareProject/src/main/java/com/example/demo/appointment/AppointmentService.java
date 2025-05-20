@@ -1,9 +1,10 @@
 package com.example.demo.appointment;
 
-import com.example.demo.user.Doctor;
-import com.example.demo.user.Patient;
-import com.example.demo.user.PatientRepository;
-import com.example.demo.user.DoctorRepository;
+import com.example.demo.user.doctor.Doctor;
+import com.example.demo.user.doctor.DoctorRepository;
+import com.example.demo.user.patient.Patient;
+import com.example.demo.user.patient.PatientRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

@@ -1,4 +1,6 @@
-package com.example.demo.user;
+package com.example.demo.user.patient;
+
+import com.example.demo.user.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

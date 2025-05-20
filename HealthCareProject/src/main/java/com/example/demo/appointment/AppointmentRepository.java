@@ -1,7 +1,8 @@
 package com.example.demo.appointment;
 
-import com.example.demo.user.Patient;
-import com.example.demo.user.Doctor;
+import com.example.demo.user.doctor.Doctor;
+import com.example.demo.user.patient.Patient;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
