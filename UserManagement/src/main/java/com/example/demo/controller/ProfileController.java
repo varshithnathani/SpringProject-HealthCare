@@ -53,4 +53,18 @@ public class ProfileController {
                                  .body("Update failed: " + e.getMessage());
         }
     }
+    @DeleteMapping("/delete/{userId}")
+    public ResponseEntity<?> deleteProfile(@PathVariable Long userId) {
+        try {
+            boolean deleted = userService.deleteUser(userId);
+            if (deleted) {
+                return ResponseEntity.ok("Profile deleted successfully.");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                 .body("Deletion failed: " + e.getMessage());
+        }
+    }
 }

@@ -17,6 +17,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     
+    @Transactional
+    public boolean deleteUser(Long userId) {
+        Optional<User> userOpt = userRepository.findById(userId);
+        if(userOpt.isPresent()){
+            userRepository.delete(userOpt.get());
+            return true;
+        }
+        return false;
+    }
+    
     @Autowired
     private DoctorRepository doctorRepository;
     
@@ -26,15 +36,19 @@ public class UserService {
     // Registers a new user and creates additional details based on role.
     @Transactional("transactionManager")
     public User registerUser(UserRequest request) {
+        // Check for existing user by email
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already registered. Please login");
+        }
+        // Proceed with registration
         User user = new User();
         user.setName(request.getName());
         user.setGender(request.getGender());
         user.setPhone(request.getPhone());
         user.setEmail(request.getEmail());
         user.setRole(request.getRole());
-        user.setPassword(request.getPassword());  // Must be already hashed
-        
-        // Save common user details to primary database
+        user.setPassword(request.getPassword());  // Already hashed
+
         User savedUser = userRepository.save(user);
 
         // Create role-specific details
@@ -52,8 +66,10 @@ public class UserService {
             patient.setPlace(request.getPlace());
             patientRepository.save(patient);
         }
+
         return savedUser;
     }
+
 
     public Optional<User> findById(Long userId) {
         return userRepository.findById(userId);
@@ -89,6 +105,7 @@ public class UserService {
         }
         return savedUser;
     }
+    
 
 	public User createUser(User user) {
 		// TODO Auto-generated method stub

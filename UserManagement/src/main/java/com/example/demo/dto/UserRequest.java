@@ -10,7 +10,9 @@ public class UserRequest {
     private String phone;
     private String email;
     private Role role;
-    private String password;  // Plaintext password (to be hashed before saving)
+    private String password;
+    
+    // Plaintext password (to be hashed before saving)
 
     // Doctor-specific fields
     private String specialization;

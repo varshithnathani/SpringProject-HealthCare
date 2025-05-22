@@ -13,7 +13,8 @@ import java.util.Date;
 @Component
 public class JwtUtil {
     // Use a sufficiently long secret key (recommended: 256 bits for HS256)
-    private static final String SECRET_KEY = "your_secret_key_here_your_secret_key_here"; // Repeat or use a key with enough length
+    //private static final String SECRET_KEY = "your_secret_key_here_your_secret_key_here"; // Repeat or use a key with enough length
+	private static final String SECRET_KEY = "qwerpyuioppsdtghjkmzxcvbnm120456";
 
     // Helper method to create a Key instance based on the SECRET_KEY
     private Key getSigningKey() {
